@@ -3,6 +3,7 @@ package otus;
 import components.HeaderButtonComponent;
 import components.ModalLoginComponent;
 import components.PersonalMenuPopupComponent;
+import components.personalInfoComponents.PersonalInfoComponentMain;
 import data.PopupMenuItemsData;
 import exceptions.BrowserNotSupportedException;
 import factories.WebDriverFactory;
@@ -36,15 +37,14 @@ public class OtusPersonalInfoPageTest {
     public void fillPersonalInfo(){
         new MainPage(driver)
                 .open();
-
         new HeaderButtonComponent(driver)
                 .clickLoginButton();
-
         new ModalLoginComponent(driver)
                 .loginToOtus();
-
         new PersonalMenuPopupComponent(driver)
                 .clickPersonalMenu(PopupMenuItemsData.PERSONAL);
+        new PersonalInfoComponentMain(driver)
+                .insertMainInfo();
 
     }
 }

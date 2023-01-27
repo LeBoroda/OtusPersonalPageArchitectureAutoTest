@@ -1,5 +1,6 @@
 package otus;
 
+import components.HeaderComponent;
 import exceptions.BrowserNotSupportedException;
 import factories.WebDriverFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -30,6 +31,9 @@ public class PersonalInfoPageTest {
     public void PersonalInfoPageTest(){
         new MainPage(driver)
                 .OpenPage();
+        new HeaderComponent(driver)
+                .clickLoginButton()
+                .popupShouldBeVisible();
 
     }
 }

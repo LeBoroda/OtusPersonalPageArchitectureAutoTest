@@ -24,7 +24,10 @@ public class CommonWaiters {
             return false;
         }
     }
-    public void waitToBeClicabile(By by){
+    public void waitToBeClickable(By by){
         Assertions.assertTrue(waitForCondition(ExpectedConditions.elementToBeClickable(driver.findElement(by))));
+    }
+    public void waitToBeVisible(By by){
+        Assertions.assertTrue(waitForCondition(ExpectedConditions.visibilityOf(driver.findElement(by))));
     }
 }

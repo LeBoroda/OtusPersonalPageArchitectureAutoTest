@@ -2,6 +2,8 @@ package otus;
 
 import components.HeaderButtonComponent;
 import components.ModalLoginComponent;
+import components.PersonalMenuPopupComponent;
+import data.PopupMenuItemsData;
 import exceptions.BrowserNotSupportedException;
 import factories.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -11,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
+import pages.PersonalInfoPage;
 
 public class OtusPersonalInfoPageTest {
     private WebDriver driver;
@@ -39,6 +42,9 @@ public class OtusPersonalInfoPageTest {
 
         new ModalLoginComponent(driver)
                 .loginToOtus();
+
+        new PersonalMenuPopupComponent(driver)
+                .clickPersonalMenu(PopupMenuItemsData.PERSONAL);
 
     }
 }

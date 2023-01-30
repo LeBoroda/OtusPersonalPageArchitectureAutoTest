@@ -36,7 +36,6 @@ public class OtusPersonalInfoPageTest {
         HeaderComponent headerComponent = new HeaderComponent(driver);
 
         mainPage.open();
-
         headerComponent
                 .clickLoginButton()
                 .loginToOtus()
@@ -44,8 +43,7 @@ public class OtusPersonalInfoPageTest {
                 .addLocationInfo(CityData.AKSAY)
                 .addPersonalData()
                 .clickSaveButton(SaveButtonData.SAVEANDFILLLATER);
-        mainPage
-                .clearSession()
+        mainPage.clearSession()
                 .open();
         headerComponent
                 .clickLoginButton()

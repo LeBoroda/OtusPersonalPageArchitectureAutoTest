@@ -1,11 +1,10 @@
 package data;
 
-public enum PopupMenuItemsData {
-    PERSONAL("personal");
+public enum SaveButtonData {
+    SAVEANDFILLLATER("Сохранить и заполнить позже");
 
     private final String name;
-
-    PopupMenuItemsData(String name){
+    SaveButtonData(String name){
         this.name = name;
     }
 

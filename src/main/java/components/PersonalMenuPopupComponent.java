@@ -9,19 +9,18 @@ import java.util.Locale;
 
 public class PersonalMenuPopupComponent extends AbsComponent{
 
-    private String popupMenuSelector = ".header3__user-info-name";
-    private String popupSubMenuItemSelector = "a[href*=%s]";
+    private final String popupMenuSelector = ".header3__user-info-name";
+    private final String popupSubMenuItemSelector = "a[href*=%s]";
     public PersonalMenuPopupComponent(WebDriver driver) {
         super(driver);
     }
 
-    public void clickPersonalMenu(PopupMenuItemsData popupMenuItemsData){
+    public PersonalInfoComponent clickPersonalMenu(PopupMenuItemsData popupMenuItemsData){
         String selector = String.format(popupSubMenuItemSelector, popupMenuItemsData.getName().toLowerCase(Locale.ROOT));
         waiter.waitForCondition(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(popupMenuSelector)));
         actions.moveToElement($(By.cssSelector(popupMenuSelector))).perform();
-//        waiter.waitForCondition(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(popupSubMenuItemSelector)));
         $(By.cssSelector(selector)).click();
-
+        return new PersonalInfoComponent(driver);
     }
 
 }

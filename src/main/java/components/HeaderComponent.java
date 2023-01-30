@@ -3,13 +3,13 @@ package components;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HeaderButtonComponent extends AbsComponent{
-    public HeaderButtonComponent(WebDriver driver) {
+public class HeaderComponent extends AbsComponent{
+    public HeaderComponent(WebDriver driver) {
         super(driver);
     }
-    public HeaderButtonComponent clickLoginButton(){
+    public ModalLoginComponent clickLoginButton(){
         String selector = ".header3__button-sign-in";
         $(By.cssSelector(selector)).click();
-        return this;
+        return new ModalLoginComponent(driver);
     }
 }

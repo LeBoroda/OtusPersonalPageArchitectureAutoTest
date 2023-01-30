@@ -1,10 +1,8 @@
 package otus;
 
-import components.HeaderButtonComponent;
-import components.ModalLoginComponent;
-import components.PersonalMenuPopupComponent;
-import components.personalInfoComponents.PersonalInfoComponentMain;
-import data.PopupMenuItemsData;
+import components.HeaderComponent;
+import data.*;
+import data.locationadata.CityData;
 import exceptions.BrowserNotSupportedException;
 import factories.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -14,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
-import pages.PersonalInfoPage;
 
 public class OtusPersonalInfoPageTest {
     private WebDriver driver;
@@ -35,16 +32,26 @@ public class OtusPersonalInfoPageTest {
     }
     @Test
     public void fillPersonalInfo(){
-        new MainPage(driver)
-                .open();
-        new HeaderButtonComponent(driver)
-                .clickLoginButton();
-        new ModalLoginComponent(driver)
-                .loginToOtus();
-        new PersonalMenuPopupComponent(driver)
-                .clickPersonalMenu(PopupMenuItemsData.PERSONAL);
-        new PersonalInfoComponentMain(driver)
-                .insertMainInfo();
+        MainPage mainPage = new MainPage(driver);
+        HeaderComponent headerComponent = new HeaderComponent(driver);
 
+        mainPage.open();
+
+        headerComponent
+                .clickLoginButton()
+                .loginToOtus()
+                .clickPersonalMenu(PopupMenuItemsData.PERSONAL)
+                .addLocationInfo(CityData.AKSAY)
+                .addPersonalData()
+                .clickSaveButton(SaveButtonData.SAVEANDFILLLATER);
+        mainPage
+                .clearSession()
+                .open();
+        headerComponent
+                .clickLoginButton()
+                .loginToOtus()
+                .clickPersonalMenu(PopupMenuItemsData.PERSONAL)
+                .checkAddedInformation()
+                .checkLocationInformation(CityData.AKSAY);
     }
 }

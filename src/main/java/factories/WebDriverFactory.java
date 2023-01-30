@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class WebDriverFactory implements IFactory{
-    private String browserName = System.getProperty("browser");
+    private final String browserName = System.getProperty("browser");
 
     @Override
     public WebDriver createDriver() throws BrowserNotSupportedException {

@@ -3,7 +3,7 @@ package data;
 public enum BrowserData {
     CHROME("chrome");
 
-    private String name;
+    private final String name;
 
     BrowserData(String name){
         this.name = name;

@@ -1,11 +1,11 @@
-package data;
+package data.locationadata;
 
-public enum PopupMenuItemsData {
-    PERSONAL("personal");
+public enum CountryData {
+    KAZAKHSTAN("Казахстан");
 
     private final String name;
 
-    PopupMenuItemsData(String name){
+    CountryData(String name) {
         this.name = name;
     }
 

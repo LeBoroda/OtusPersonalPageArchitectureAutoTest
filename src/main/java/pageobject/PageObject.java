@@ -23,8 +23,4 @@ public abstract class PageObject {
         return driver.findElement(by);
     }
 
-    protected void clearAndInput(By by, String line){
-        $(by).clear();
-        $(by).sendKeys(line);
-    }
 }

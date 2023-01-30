@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import pageobject.PageObject;
 
 public abstract class AbsPage extends PageObject {
-    private String baseUrl = System.getProperty("base.url");
+    private final String baseUrl = System.getProperty("base.url");
     private String path;
 
     public AbsPage(WebDriver driver, String path){
@@ -17,5 +17,10 @@ public abstract class AbsPage extends PageObject {
             path +="/";
         }
         driver.get(baseUrl.replaceAll("\\/$","")+path);
+    }
+
+    public AbsPage clearSession(){
+        driver.manage().deleteAllCookies();
+        return this;
     }
 }

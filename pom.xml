@@ -16,9 +16,9 @@
         <selenium.java.version>4.8.0</selenium.java.version>
         <junit.version>5.9.2</junit.version>
         <browser>chrome</browser>
-        <base.url>https://otus.ru</base.url>
-        <login>watolak806@dni8.com</login>
-        <password>Stantestpassword1!</password>
+        <base.url>url</base.url>
+        <login>login</login>
+        <password>password</password>
     </properties>
 
     <dependencies>

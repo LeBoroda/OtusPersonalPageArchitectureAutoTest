@@ -10,34 +10,58 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class PersonalInfoComponent extends AbsComponent {
 
     private final String buttonSelectorTemplate = "button[title='%s']";
+    private final String firstNameCyrSelector = "input[name='fname']";
+    private final String firstNameLatSelector = "input[name='fname_latin']";
+    private final String lastNameCyrSelector = "input[name='lname']";
+    private final String lastNameLatSelector = "input[name='lname_latin']";
+    private final String blogNameSelector = "input[name='blog_name']";
+    private final String dOBSelector = "input[name='date_of_birth']";
+    private final String yesRelocateSelector = "#id_ready_to_relocate_1+span";
+    private final String workFullDaySelector = "input[value='full']+span";
+    private final String workFlexibleSelector = "input[value='flexible']+span";
+    private final String companyNameSelector = "#id_company";
+    private final String workPositionSelector = "#id_work";
+    private final String englishLevelFieldSelector = "input[name=english_level]+div";
+    private final String englishLevelMasteryButtonSelector = "button[title='Супер продвинутый (Mastery)']";
+    private final String sexFieldSelector = "div[class='select select_full']";
+    private final String femaleSexButtonSelector = "#id_gender>option[value=f]";
+    private final String additionalContact1Field = "input[name='contact-0-value']";
+    private final String additionalContact2Field = "input[name='contact-1-value']";
+    private final String telegramButtonSelector = "button[title='Тelegram']";
+    private final String whatsappButtonSelector = "//*[@name='contact-1-id']//following::button[@title='WhatsApp']";
+    private final String addContactInfoButtonSelector = "button[class*='custom-select-add']";
+    private final String preferableContactCheckButtonSelector = "input[name='contact-0-preferable']+span";
+    private final String firstAdditionalContactMenuSelector = "input[name*='contact-0']~.lk-cv-block__input";
+    private final String secondAdditionalContactMenuSelector = "input[name*='contact-1']~.lk-cv-block__input";
+
 
     public PersonalInfoComponent(WebDriver driver) {
         super(driver);
     }
     public PersonalInfoComponent addPersonalData(){
-        clearAndInput(By.cssSelector(PersonalInfoSelectorsData.FIRSTNAMECYR.getName()), TestData.FIRSTNAMECYR.getName());
-        clearAndInput(By.cssSelector(PersonalInfoSelectorsData.FIRSTNAMELAT.getName()), TestData.FIRSTNAMELAT.getName());
-        clearAndInput(By.cssSelector(PersonalInfoSelectorsData.LASTNAMECYR.getName()), TestData.LASTNAMECYR.getName());
-        clearAndInput(By.cssSelector(PersonalInfoSelectorsData.LASTNAMELAT.getName()), TestData.LASTNAMELAT.getName());
-        clearAndInput(By.cssSelector(PersonalInfoSelectorsData.BLOGNAME.getName()), TestData.BLOGNAME.getName());
-        clearAndInput(By.cssSelector(PersonalInfoSelectorsData.DOB.getName()), TestData.DOB.getName());
-        $(By.cssSelector(PersonalInfoSelectorsData.YESRELOCATE.getName())).click();
-        $(By.cssSelector(PersonalInfoSelectorsData.WORKFULLDAY.getName())).click();
-        $(By.cssSelector(PersonalInfoSelectorsData.WORKFLEXIBLE.getName())).click();
-        dropDownMenuClick(By.cssSelector(PersonalInfoSelectorsData.FIRSTADDCONTACTMENU.getName()),
-                By.cssSelector(PersonalInfoSelectorsData.TELEGRAM.getName()));
-        clearAndInput(By.cssSelector(PersonalInfoSelectorsData.ADDITIONALCONTACT1.getName()), TestData.ADDITIONALCONTACT1.getName());
-        $(By.cssSelector(PersonalInfoSelectorsData.PREFFERABLECONTACT.getName())).click();
-        $(By.cssSelector(PersonalInfoSelectorsData.ADDCONTACT.getName())).click();
-        dropDownMenuClick(By.cssSelector(PersonalInfoSelectorsData.SECONTADDCONTACTMENU.getName()),
-                By.xpath(PersonalInfoSelectorsData.WHATSAPP.getName()));
-        clearAndInput(By.cssSelector(PersonalInfoSelectorsData.ADDITIONALCONTACT2.getName()), TestData.ADDITIONALCONTACT2.getName());
-        dropDownMenuClick(By.cssSelector(PersonalInfoSelectorsData.ENGLISHLEVEL.getName()),
-                By.cssSelector(PersonalInfoSelectorsData.ENGLISHLEVELMASTERY.getName()));
-        dropDownMenuClick(By.cssSelector(PersonalInfoSelectorsData.SEX.getName()),
-                By.cssSelector(PersonalInfoSelectorsData.SEXFEMALE.getName()));
-        clearAndInput(By.cssSelector(PersonalInfoSelectorsData.COMPANY.getName()), TestData.COMPANY.getName());
-        clearAndInput(By.cssSelector(PersonalInfoSelectorsData.POSITION.getName()), TestData.POSITION.getName());
+        clearAndInput(By.cssSelector(firstNameCyrSelector), TestData.FIRSTNAMECYR.getName());
+        clearAndInput(By.cssSelector(firstNameLatSelector), TestData.FIRSTNAMELAT.getName());
+        clearAndInput(By.cssSelector(lastNameCyrSelector), TestData.LASTNAMECYR.getName());
+        clearAndInput(By.cssSelector(lastNameLatSelector), TestData.LASTNAMELAT.getName());
+        clearAndInput(By.cssSelector(blogNameSelector), TestData.BLOGNAME.getName());
+        clearAndInput(By.cssSelector(dOBSelector), TestData.DOB.getName());
+        $(By.cssSelector(yesRelocateSelector)).click();
+        $(By.cssSelector(workFullDaySelector)).click();
+        $(By.cssSelector(workFlexibleSelector)).click();
+        dropDownMenuClick(By.cssSelector(firstAdditionalContactMenuSelector),
+                By.cssSelector(telegramButtonSelector));
+        clearAndInput(By.cssSelector(additionalContact1Field), TestData.ADDITIONALCONTACT1.getName());
+        $(By.cssSelector(preferableContactCheckButtonSelector)).click();
+        $(By.cssSelector(addContactInfoButtonSelector)).click();
+        dropDownMenuClick(By.cssSelector(secondAdditionalContactMenuSelector),
+                By.xpath(whatsappButtonSelector));
+        clearAndInput(By.cssSelector(additionalContact2Field), TestData.ADDITIONALCONTACT2.getName());
+        dropDownMenuClick(By.cssSelector(englishLevelFieldSelector),
+                By.cssSelector(englishLevelMasteryButtonSelector));
+        dropDownMenuClick(By.cssSelector(sexFieldSelector),
+                By.cssSelector(femaleSexButtonSelector));
+        clearAndInput(By.cssSelector(companyNameSelector), TestData.COMPANY.getName());
+        clearAndInput(By.cssSelector(workPositionSelector), TestData.POSITION.getName());
 
         return this;
     }
@@ -69,43 +93,43 @@ public class PersonalInfoComponent extends AbsComponent {
     public PersonalInfoComponent checkAddedInformation(){
 
         Assertions.assertEquals(TestData.FIRSTNAMECYR.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.FIRSTNAMECYR.getName())).getAttribute("value"));
+                $(By.cssSelector(firstNameCyrSelector)).getAttribute("value"));
         Assertions.assertEquals(TestData.FIRSTNAMELAT.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.FIRSTNAMELAT.getName())).getAttribute("value"));
+                $(By.cssSelector(firstNameLatSelector)).getAttribute("value"));
         Assertions.assertEquals(TestData.LASTNAMECYR.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.LASTNAMECYR.getName())).getAttribute("value"));
+                $(By.cssSelector(lastNameCyrSelector)).getAttribute("value"));
         Assertions.assertEquals(TestData.LASTNAMELAT.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.LASTNAMELAT.getName())).getAttribute("value"));
+                $(By.cssSelector(lastNameLatSelector)).getAttribute("value"));
         Assertions.assertEquals(TestData.BLOGNAME.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.BLOGNAME.getName())).getAttribute("value"));
+                $(By.cssSelector(blogNameSelector)).getAttribute("value"));
         Assertions.assertEquals(TestData.DOB.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.DOB.getName())).getAttribute("value"));
+                $(By.cssSelector(dOBSelector)).getAttribute("value"));
         Assertions.assertEquals(TestData.ENGLISHLEVEL.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.ENGLISHLEVEL.getName())).getText());
+                $(By.cssSelector(englishLevelFieldSelector)).getText());
         Assertions.assertEquals(TestData.YESRELOCATE.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.YESRELOCATE.getName())).getText());
+                $(By.cssSelector(yesRelocateSelector)).getText());
         Assertions.assertFalse(false,
-                $(By.cssSelector(PersonalInfoSelectorsData.WORKFULLDAY.getName())).getAttribute("checked"));
+                $(By.cssSelector(workFullDaySelector)).getAttribute("checked"));
         Assertions.assertTrue(true,
-                $(By.cssSelector(PersonalInfoSelectorsData.WORKFLEXIBLE.getName())).getAttribute("checked"));
+                $(By.cssSelector(workFlexibleSelector)).getAttribute("checked"));
         Assertions.assertEquals(TestData.ADDITIONALMESSENGER1.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.FIRSTADDCONTACTMENU.getName())).getText());
+                $(By.cssSelector(firstAdditionalContactMenuSelector)).getText());
         Assertions.assertEquals(TestData.ADDITIONALCONTACT1.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.ADDITIONALCONTACT1.getName())).getAttribute("value"));
+                $(By.cssSelector(additionalContact1Field)).getAttribute("value"));
         Assertions.assertTrue(true,
-                $(By.cssSelector(PersonalInfoSelectorsData.PREFFERABLECONTACT.getName())).getAttribute("checked"));
+                $(By.cssSelector(preferableContactCheckButtonSelector)).getAttribute("checked"));
         Assertions.assertEquals(TestData.ADDITIONALMESSENGER2.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.SECONTADDCONTACTMENU.getName())).getText());
+                $(By.cssSelector(secondAdditionalContactMenuSelector)).getText());
         Assertions.assertEquals(TestData.ADDITIONALCONTACT2.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.ADDITIONALCONTACT2.getName())).getAttribute("value"));
+                $(By.cssSelector(additionalContact2Field)).getAttribute("value"));
         Assertions.assertFalse(false,
-                $(By.cssSelector(PersonalInfoSelectorsData.PREFFERABLECONTACT.getName())).getAttribute("checked"));
+                $(By.cssSelector(preferableContactCheckButtonSelector)).getAttribute("checked"));
         Assertions.assertEquals(TestData.SEXFEMALE.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.SEXFEMALE.getName())).getAttribute("value"));
+                $(By.cssSelector(femaleSexButtonSelector)).getAttribute("value"));
         Assertions.assertEquals(TestData.COMPANY.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.COMPANY.getName())).getAttribute("value"));
+                $(By.cssSelector(companyNameSelector)).getAttribute("value"));
         Assertions.assertEquals(TestData.POSITION.getName(),
-                $(By.cssSelector(PersonalInfoSelectorsData.POSITION.getName())).getAttribute("value"));
+                $(By.cssSelector(workPositionSelector)).getAttribute("value"));
         return this;
     }
 
